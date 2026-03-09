@@ -36,7 +36,7 @@ new (class HuskarArmletAbuse {
 	}
 
 	private GetArmlet(hero: npc_dota_hero_huskar): Item | undefined {
-		return hero.Items.find(i => i.Name === "item_armlet_of_mordiggian")
+		return hero.Items.find(i => i.Name === "item_armlet")
 	}
 
 	private CanAbuse(hero: npc_dota_hero_huskar): boolean {
@@ -52,7 +52,7 @@ new (class HuskarArmletAbuse {
 		if (!armlet.IsActivated || !armlet.CanBeCasted()) {
 			return
 		}
-		hero.CastNoTarget(armlet, false, true)
+		hero.CastToggle(armlet, false, true)
 		this.offTimer = this.reactivateDelay.value / 1000
 	}
 
@@ -60,7 +60,7 @@ new (class HuskarArmletAbuse {
 		if (armlet.IsActivated || !armlet.CanBeCasted()) {
 			return
 		}
-		hero.CastNoTarget(armlet, false, true)
+		hero.CastToggle(armlet, false, true)
 	}
 
 	private Tick(dt: number): void {
